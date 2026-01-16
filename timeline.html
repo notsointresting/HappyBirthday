@@ -18,11 +18,20 @@
 
         body {
             min-height: 100vh;
-            /* CUSTOMIZE: Change gradient colors */
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background: linear-gradient(135deg,
+                    rgba(255, 209, 220, 0.85) 0%,
+                    rgba(230, 230, 250, 0.85) 25%,
+                    rgba(255, 239, 213, 0.85) 50%,
+                    rgba(230, 230, 250, 0.85) 75%,
+                    rgba(255, 209, 220, 0.85) 100%),
+                    url('background-movable.gif');
+            background-size: 400% 400%, cover;
+            background-position: center, center;
+            background-attachment: fixed;
+            animation: gradientFlow 15s ease infinite;
             font-family: 'Quicksand', sans-serif;
-            padding: 2rem;
             overflow-x: hidden;
+            color: #4a4a4a;
         }
 
         .page-title {
