@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CUSTOMIZE: Change the title -->
+    <title>Our Journey 💫</title>
+    <!-- CUSTOMIZE: Change favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            /* CUSTOMIZE: Change gradient colors */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            font-family: 'Quicksand', sans-serif;
+            padding: 2rem;
+            overflow-x: hidden;
+        }
+
+        .page-title {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+            transform: translateX(50px);
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-content {
+            background: rgba(255,255,255,0.95);
+            padding: 1.5rem;
+            border-radius: 15px;
+            max-width: 350px;
+            margin: 0 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ffd700;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 20px rgba(255,215,0,0.5);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: calc(50% - 10px);
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: calc(50% - 10px);
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            /* CUSTOMIZE: Change date color */
+            color: #764ba2;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .timeline-emoji {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Friendship Receipt */
+        .receipt-container {
+            max-width: 400px;
+            margin: 3rem auto;
+            background: #fffef5;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+
+        .receipt-container::before,
+        .receipt-container::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(45deg, transparent 33.33%, #fffef5 33.33%, #fffef5 66.66%, transparent 66.66%),
+                        linear-gradient(-45deg, transparent 33.33%, #fffef5 33.33%, #fffef5 66.66%, transparent 66.66%);
+            background-size: 20px 40px;
+        }
+
+        .receipt-container::before {
+            top: -10px;
+        }
+
+        .receipt-container::after {
+            bottom: -10px;
+            transform: rotate(180deg);
+        }
+
+        .receipt-header {
+            text-align: center;
+            border-bottom: 2px dashed #333;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .receipt-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .receipt-subtitle {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px dotted #ccc;
+        }
+
+        .receipt-label {
+            color: #333;
+        }
+
+        .receipt-value {
+            /* CUSTOMIZE: Change value color */
+            color: #764ba2;
+            font-weight: bold;
+        }
+
+        .receipt-total {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px dashed #333;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .receipt-footer {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .next-btn {
+            display: block;
+            margin: 3rem auto;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            border: none;
+            border-radius: 50px;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255,215,0,0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .next-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255,215,0,0.6);
+        }
+
+        /* Music Toggle */
+        .music-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .music-toggle.playing {
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        .music-icon {
+            font-size: 1.5rem;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: #333;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: 50px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 10px;
+                right: auto;
+            }
+
+            .page-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio id="bgMusic" loop>
+        <source src="hbd.mp3" type="audio/mpeg">
+    </audio>
+    <div class="music-toggle" id="musicToggle" title="Toggle Music">
+        <span class="music-icon">🎵</span>
+    </div>
+    <a href="wishes.html" class="back-btn" title="Go Back">←</a>
+
+    <!-- CUSTOMIZE: Change the title and subtitle -->
+    <h1 class="page-title">Our Journey Together 💫</h1>
+    <p class="page-subtitle">From Strangers to Best Friends</p>
+
+    <div class="timeline">
+        <!-- CUSTOMIZE: Add your timeline events here -->
+        <!-- Copy and paste timeline-item blocks for more events -->
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="timeline-emoji">💬</div>
+                <!-- CUSTOMIZE: Change date -->
+                <div class="timeline-date">January 1, 2023</div>
+                <!-- CUSTOMIZE: Change title -->
+                <div class="timeline-title">First Meeting</div>
+                <!-- CUSTOMIZE: Change description -->
+                <div class="timeline-desc">The day we first met! Little did we know this would be the start of an amazing journey.</div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="timeline-emoji">🤝</div>
+                <div class="timeline-date">March 15, 2023</div>
+                <div class="timeline-title">Becoming Friends</div>
+                <div class="timeline-desc">The friendship started feeling more real! We began spending more time together.</div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="timeline-emoji">😊</div>
+                <div class="timeline-date">June 20, 2023</div>
+                <div class="timeline-title">First Adventure</div>
+                <div class="timeline-desc">Our first adventure together! An unforgettable experience that brought us closer.</div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="timeline-emoji">⚡</div>
+                <div class="timeline-date">Through The Journey</div>
+                <div class="timeline-title">Ups and Downs</div>
+                <div class="timeline-desc">We've had our moments, but we always found our way back. That's what real friendship is about!</div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="timeline-emoji">🎂</div>
+                <!-- CUSTOMIZE: Change to their birthday date -->
+                <div class="timeline-date">January 25, 2025</div>
+                <div class="timeline-title">Your Birthday!</div>
+                <!-- CUSTOMIZE: Update the message -->
+                <div class="timeline-desc">And here we are, celebrating YOU! Another year of our amazing friendship... 💖</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Friendship Receipt - CUSTOMIZE all values -->
+    <div class="receipt-container">
+        <div class="receipt-header">
+            <div class="receipt-title">🧾 FRIENDSHIP RECEIPT</div>
+            <!-- CUSTOMIZE: Change subtitle -->
+            <div class="receipt-subtitle">Best Friends Inc.</div>
+        </div>
+        <div class="receipt-row">
+            <span class="receipt-label">Years of Friendship:</span>
+            <!-- CUSTOMIZE: Update value -->
+            <span class="receipt-value">2+ years</span>
+        </div>
+        <div class="receipt-row">
+            <span class="receipt-label">First Meeting:</span>
+            <!-- CUSTOMIZE: Update date -->
+            <span class="receipt-value">Jan 1, 2023</span>
+        </div>
+        <div class="receipt-row">
+            <span class="receipt-label">Adventures Together:</span>
+            <span class="receipt-value">Many 📍</span>
+        </div>
+        <div class="receipt-row">
+            <span class="receipt-label">Laughs Shared:</span>
+            <span class="receipt-value">Countless 😄</span>
+        </div>
+        <div class="receipt-row">
+            <span class="receipt-label">Inside Jokes:</span>
+            <span class="receipt-value">Too many!</span>
+        </div>
+        <div class="receipt-row">
+            <span class="receipt-label">Memories Made:</span>
+            <span class="receipt-value">∞ Infinite</span>
+        </div>
+        <div class="receipt-total">
+            <strong>TOTAL FRIENDSHIP VALUE: PRICELESS 💖</strong>
+        </div>
+        <div class="receipt-footer">
+            Thank you for being an amazing friend!<br>
+            <!-- CUSTOMIZE: Change your name -->
+            - [YOUR NAME] 💖
+        </div>
+    </div>
+
+    <button class="next-btn" onclick="goToMemories()">View Our Memories 📸</button>
+
+    <script>
+        // Music Control
+        const bgMusic = document.getElementById('bgMusic');
+        const musicToggle = document.getElementById('musicToggle');
+        const musicIcon = musicToggle.querySelector('.music-icon');
+
+        function toggleMusic() {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                musicToggle.classList.add('playing');
+                musicIcon.textContent = '🎵';
+                localStorage.setItem('musicPlaying', 'true');
+            } else {
+                bgMusic.pause();
+                musicToggle.classList.remove('playing');
+                musicIcon.textContent = '🔇';
+                localStorage.setItem('musicPlaying', 'false');
+            }
+        }
+
+        musicToggle.addEventListener('click', toggleMusic);
+
+        if (localStorage.getItem('musicPlaying') === 'true') {
+            bgMusic.play().then(() => {
+                musicToggle.classList.add('playing');
+                musicIcon.textContent = '🎵';
+            }).catch(() => {
+                musicIcon.textContent = '🔇';
+            });
+        }
+
+        // Timeline animation on scroll
+        const timelineItems = document.querySelectorAll('.timeline-item');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        timelineItems.forEach(item => observer.observe(item));
+
+        // Initial animation for visible items
+        setTimeout(() => {
+            timelineItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('visible');
+                }, index * 200);
+            });
+        }, 500);
+
+        // Navigation
+        function goToMemories() {
+            gsap.to('body', {
+                opacity: 0,
+                duration: 0.8,
+                onComplete: () => {
+                    window.location.href = 'memories.html';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

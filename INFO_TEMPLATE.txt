@@ -1,0 +1,97 @@
+====================================
+HAPPY BIRTHDAY WEBSITE - INFO SHEET
+====================================
+
+Fill in the details below before customizing your website.
+Delete the examples and add your own information.
+
+====================================
+BASIC INFORMATION
+====================================
+
+Their Name: [e.g., Sarah, John, Mom, Bestie]
+Their Age (turning): [e.g., 22, 25, 30]
+Birthday Date: [e.g., January 25, 2025]
+Your Name: [Your name]
+
+====================================
+RELATIONSHIP DETAILS
+====================================
+
+Relationship Type: [Friend / Partner / Sibling / Parent / Other]
+Their Nickname (if any): [e.g., Sunshine, Bear, etc.]
+Your Nickname (if any): [What they call you]
+
+How You Met:
+[Brief description - e.g., "We met in college during our first year"]
+
+When You Met:
+[Date or timeframe - e.g., "September 2020"]
+
+Where You Met:
+[Location - e.g., "At the campus library"]
+
+====================================
+PHOTO DESCRIPTIONS
+====================================
+
+Photo 1 - [photo-1.jpg]:
+Caption: [e.g., "Our first trip together to the beach"]
+Date/Event: [e.g., "Summer 2022"]
+
+Photo 2 - [photo-2.jpg]:
+Caption: [e.g., "That time we stayed up all night talking"]
+Date/Event: [e.g., "New Year 2023"]
+
+Photo 3 - [photo-3.jpg]:
+Caption: [e.g., "Your birthday last year - what a celebration!"]
+Date/Event: [e.g., "Birthday 2024"]
+
+====================================
+BIRTHDAY WISHES / REASONS I LOVE YOU
+====================================
+
+Write 5-10 reasons why they're special to you:
+
+1. [e.g., Because your smile makes everything better]
+2. [e.g., Because you always know how to cheer me up]
+3. [e.g., Because you're the best listener I know]
+4. [e.g., Because you give the warmest hugs]
+5. [e.g., Because you believe in me when I don't]
+6.
+7.
+8.
+9.
+10.
+
+====================================
+SPECIAL MESSAGES
+====================================
+
+Main Birthday Message:
+[Write your heartfelt birthday message here]
+
+Final/Closing Message:
+[The message that appears at the end of the website]
+
+====================================
+OPTIONAL EXTRAS
+====================================
+
+Background Music:
+[Song name or "hbd.mp3" for default happy birthday song]
+
+Theme Color Preference:
+[Pink (default) / Blue / Purple / Green / Custom]
+
+Any Timeline Events (for timeline page):
+Date 1: [Event description]
+Date 2: [Event description]
+Date 3: [Event description]
+
+====================================
+NOTES
+====================================
+
+[Any additional notes or special requests for yourself]
+

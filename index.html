@@ -3,21 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CUSTOMIZE: Change the title -->
     <title>Happy Birthday</title>
+    <!-- CUSTOMIZE: Change favicon to your own icon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Preload Images - CUSTOMIZE: Update with your image names -->
+    <link rel="preload" as="image" href="photo-1.jpg">
+    <link rel="preload" as="image" href="photo-2.jpg">
+    <link rel="preload" as="image" href="photo-3.jpg">
+    <link rel="preload" as="image" href="animation-1.gif">
+    <link rel="preload" as="image" href="animation-2.gif">
+    <!-- Preload Audio -->
+    <link rel="preload" as="audio" href="hbd.mp3">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-    
+    <link rel="stylesheet" href="home.css">
 </head>
 <body>
-    <div class="cursor"></div>
-    <div class="container">
-        <h1>Happy Birthday Priya💗</h1>
-        <div class="greeting"></div>
-        <button class="cta-button">Click to Enter Our World 💕</button>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-heart">💖</div>
+        <div class="loading-text">Loading magic...</div>
     </div>
 
-    <script src="script.js">
-        
-    </script>
+    <audio id="bgMusic" loop>
+        <source src="hbd.mp3" type="audio/mpeg">
+    </audio>
+    <div class="music-toggle" id="musicToggle" title="Toggle Music">
+        <span class="music-icon">🎵</span>
+    </div>
+    <div class="cursor"></div>
+    <div class="container">
+        <div id="countdown-section" class="countdown-section">
+            <h2 class="countdown-title">Birthday Countdown</h2>
+            <div class="countdown-timer">
+                <div class="countdown-item">
+                    <span id="days" class="countdown-number">00</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="hours" class="countdown-number">00</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes" class="countdown-number">00</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds" class="countdown-number">00</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
+        </div>
+        <div id="birthday-content" class="birthday-content" style="display: none;">
+            <!-- CUSTOMIZE: Change the age -->
+            <div class="level-up-badge">Level [AGE] Unlocked! 🎮</div>
+            <!-- CUSTOMIZE: Change the name -->
+            <h1>Happy Birthday [THEIR NAME]💗</h1>
+            <!-- CUSTOMIZE: Change nickname or remove this line -->
+            <p class="nickname-text">To my favorite [NICKNAME] 💕</p>
+            <div class="greeting"></div>
+            <!-- CUSTOMIZE: Change your name -->
+            <p class="from-text">- From [YOUR NAME] 💖</p>
+            <button class="cta-button">Click to Enter 💕</button>
+        </div>
+    </div>
+
+    <script src="home.js"></script>
 </body>
 </html>
