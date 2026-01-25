@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const birthdayDate = new Date('January 25, 2025 00:00:00').getTime();
 
     // CUSTOMIZE: Change this greeting message
-    const greetingText = "Hey [NAME]! You're one of the most amazing people I've ever known! 💖";
+    const greetingText = "Hey Cheenuuu! You're one of the most amazing people I've ever known! 💖";
 
     // CUSTOMIZE: Change floating elements if desired
     const floatingElements = ['💖', '✨', '🌸', '💫', '💕'];
